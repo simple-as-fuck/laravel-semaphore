@@ -5,7 +5,8 @@
         "php": "^7.4|^8.0",
         "symfony/lock": "^5.3",
         "illuminate/support": "^8.0",
-        "illuminate/contracts": "^8.0"
+        "illuminate/contracts": "^8.0",
+        "illuminate/database": "^8.0"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12.92",

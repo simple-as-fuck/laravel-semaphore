@@ -7,6 +7,7 @@ namespace SimpleAsFuck\LaravelLock\Provider;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Support\ServiceProvider;
 use SimpleAsFuck\LaravelLock\Factory\FlockFactory;
+use SimpleAsFuck\LaravelLock\Factory\PostgreSqlFactory;
 use SimpleAsFuck\LaravelLock\Factory\SemaphoreFactory;
 use SimpleAsFuck\LaravelLock\Factory\StoreFactory;
 use SimpleAsFuck\LaravelLock\Service\LockManager;
@@ -27,6 +28,7 @@ class PackageProvider extends ServiceProvider
             $storeFactories = [
                 'semaphore' => new SemaphoreFactory(),
                 'flock' => new FlockFactory(),
+                'pgsql' => $this->app->make(PostgreSqlFactory::class),
             ];
 
             if (! array_key_exists($storeName, $storeFactories)) {
