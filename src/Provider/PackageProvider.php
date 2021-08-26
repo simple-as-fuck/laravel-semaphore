@@ -6,6 +6,7 @@ namespace SimpleAsFuck\LaravelLock\Provider;
 
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Support\ServiceProvider;
+use SimpleAsFuck\LaravelLock\Factory\FlockFactory;
 use SimpleAsFuck\LaravelLock\Factory\SemaphoreFactory;
 use SimpleAsFuck\LaravelLock\Factory\StoreFactory;
 use SimpleAsFuck\LaravelLock\Service\LockManager;
@@ -25,6 +26,7 @@ class PackageProvider extends ServiceProvider
             /** @var array<string, StoreFactory> $storeFactories */
             $storeFactories = [
                 'semaphore' => new SemaphoreFactory(),
+                'flock' => new FlockFactory(),
             ];
 
             if (! array_key_exists($storeName, $storeFactories)) {
