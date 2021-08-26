@@ -1,4 +1,4 @@
-# Simple as fuck / Laravel semaphore
+# Simple as fuck / Laravel lock
 
-Laravel integration for [zerkalica/semaphore](https://packagist.org/packages/zerkalica/semaphore).
+Laravel integration for [symfony/lock](https://symfony.com/doc/current/components/lock.html).
 
