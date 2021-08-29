@@ -14,5 +14,12 @@
     },
     "autoload": {
         "psr-4": {"SimpleAsFuck\\LaravelLock\\": "src/"}
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SimpleAsFuck\\LaravelLock\\Provider\\PackageProvider"
+            ]
+        }
     }
 }
