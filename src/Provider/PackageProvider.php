@@ -11,6 +11,7 @@ use SimpleAsFuck\LaravelLock\Factory\PostgreSqlFactory;
 use SimpleAsFuck\LaravelLock\Factory\SemaphoreFactory;
 use SimpleAsFuck\LaravelLock\Factory\StoreFactory;
 use SimpleAsFuck\LaravelLock\Service\LockManager;
+use SimpleAsFuck\Validator\Factory\Validator;
 use Symfony\Component\Lock\LockFactory;
 
 class PackageProvider extends ServiceProvider
@@ -22,7 +23,7 @@ class PackageProvider extends ServiceProvider
         $this->app->singleton(LockFactory::class, function (): LockFactory {
             /** @var Repository $config */
             $config = $this->app->make(Repository::class);
-            $storeName = $config->get('lock.store');
+            $storeName = Validator::make($config->get('lock.store'))->string()->notNull();
 
             /** @var array<string, StoreFactory> $storeFactories */
             $storeFactories = [

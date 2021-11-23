@@ -6,6 +6,7 @@ namespace SimpleAsFuck\LaravelLock\Factory;
 
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Database\DatabaseManager;
+use SimpleAsFuck\Validator\Factory\Validator;
 use Symfony\Component\Lock\BlockingStoreInterface;
 use Symfony\Component\Lock\Store\PostgreSqlStore;
 
@@ -22,7 +23,7 @@ final class PostgreSqlFactory extends StoreFactory
 
     public function make(): BlockingStoreInterface
     {
-        $connectionName = $this->config->get('lock.pgsql_store.connection');
+        $connectionName = Validator::make($this->config->get('lock.pgsql_store.connection'))->string()->nullable();
         $connection = $this->databaseManager->connection($connectionName);
 
         if ($connection->getDriverName() !== 'pgsql') {
