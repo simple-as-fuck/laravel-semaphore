@@ -4,16 +4,21 @@ declare(strict_types=1);
 
 namespace SimpleAsFuck\LaravelLock\Service;
 
+use Illuminate\Contracts\Config\Repository;
 use SimpleAsFuck\LaravelLock\Model\Lock;
+use SimpleAsFuck\Validator\Factory\Validator;
 use Symfony\Component\Lock\LockFactory;
+use Symfony\Component\Lock\LockInterface;
 
 class LockManager
 {
     private LockFactory $lockFactory;
+    private Repository $config;
 
-    public function __construct(LockFactory $lockFactory)
+    public function __construct(LockFactory $lockFactory, Repository $config)
     {
         $this->lockFactory = $lockFactory;
+        $this->config = $config;
     }
 
     /**
@@ -21,7 +26,7 @@ class LockManager
      */
     public function acquire(string $key): Lock
     {
-        $lock = $this->lockFactory->createLock($key, null, true);
+        $lock = $this->createSymfonyLock($key);
         $lock->acquire(true);
 
         return new Lock($lock);
@@ -32,11 +37,17 @@ class LockManager
      */
     public function acquireNotBlocking(string $key): ?Lock
     {
-        $lock = $this->lockFactory->createLock($key, null, true);
+        $lock = $this->createSymfonyLock($key);
         if (! $lock->acquire(false)) {
             return null;
         }
 
         return new Lock($lock);
+    }
+
+    private function createSymfonyLock(string $key): LockInterface
+    {
+        $appName = Validator::make($this->config->get('app.name'))->string()->notNull();
+        return $this->lockFactory->createLock($appName.$key, null, true);
     }
 }
