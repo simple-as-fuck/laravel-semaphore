@@ -7,7 +7,7 @@
         "illuminate/support": "^8.0",
         "illuminate/contracts": "^8.0",
         "illuminate/database": "^8.0",
-        "simple-as-fuck/php-validator": "^0.1.0"
+        "simple-as-fuck/php-validator": "^0.1.0|^0.2.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
