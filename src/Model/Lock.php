@@ -17,6 +17,8 @@ final class Lock
 
     public function release(): void
     {
-        $this->lock->release();
+        if ($this->lock->isAcquired()) {
+            $this->lock->release();
+        }
     }
 }
