@@ -40,4 +40,23 @@ final class LockTest extends TestCase
         self::assertFalse($oldLock->acquired());
         self::assertFalse($newLock->acquired());
     }
+
+    public function testRecursionRelease(): void
+    {
+        $lock = $this->lockManager->acquireNotBlocking('test');
+        $recursionLock = $this->lockManager->acquireNotBlocking('test');
+
+        self::assertTrue($lock->acquired());
+        self::assertTrue($recursionLock->acquired());
+
+        $recursionLock->release();
+
+        self::assertFalse($recursionLock->acquired());
+        self::assertTrue($lock->acquired());
+
+        $lock->release();
+
+        self::assertFalse($recursionLock->acquired());
+        self::assertFalse($lock->acquired());
+    }
 }
