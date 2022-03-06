@@ -21,4 +21,9 @@ final class Lock
             $this->lock->release();
         }
     }
+
+    public function acquired(): bool
+    {
+        return $this->lock->isAcquired();
+    }
 }

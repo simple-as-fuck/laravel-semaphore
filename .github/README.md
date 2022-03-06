@@ -16,6 +16,13 @@ Add into your .env_example and configure your environment on server.
 LOCK_STORE=semaphore
 ```
 
+## Support
+
+If any PHP platform requirements in [composer.json](../composer.json) ends with security support,
+consider package version as unsupported except last version.
+
+[PHP supported versions](https://www.php.net/supported-versions.php).
+
 Supported symfony lock store are only with native blocking lock, because it is fucking effective.
 
 - `semaphore` [SemaphoreStore](https://symfony.com/doc/current/components/lock.html#semaphorestore)
