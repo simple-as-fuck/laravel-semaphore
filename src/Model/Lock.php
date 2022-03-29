@@ -28,7 +28,7 @@ class Lock
             $this->lock->release();
         }
 
-        if ($this->lockCollection) {
+        if ($this->lockCollection !== null) {
             $this->lockCollection->remove($this);
         }
     }

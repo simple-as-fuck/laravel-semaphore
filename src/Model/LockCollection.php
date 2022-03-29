@@ -23,7 +23,7 @@ final class LockCollection
     {
         if (array_key_exists($key, $this->acquiredLocks)) {
             $lock = $this->acquiredLocks[$key]->get();
-            if ($lock && $lock->acquired()) {
+            if ($lock !== null && $lock->acquired()) {
                 return true;
             } else {
                 unset($this->acquiredLocks[$key]);
@@ -37,7 +37,7 @@ final class LockCollection
     {
         foreach ($this->acquiredLocks as $key => $acquiredLock) {
             $acquiredLock = $acquiredLock->get();
-            if ($acquiredLock && $acquiredLock !== $lock) {
+            if ($acquiredLock !== null && $acquiredLock !== $lock) {
                 continue;
             }
 
