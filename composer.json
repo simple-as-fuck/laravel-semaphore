@@ -2,12 +2,12 @@
     "name": "simple-as-fuck/laravel-lock",
     "description": "Laravel integration for symfony/lock.",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
         "symfony/lock": "^5.4.7|^6.0.7",
         "illuminate/support": "^8.0|^9.0",
         "illuminate/contracts": "^8.0|^9.0",
         "illuminate/database": "^8.0|^9.0",
-        "simple-as-fuck/php-validator": "^0.1.0|^0.2.0|^0.3.0|^0.4.0"
+        "simple-as-fuck/php-validator": "^0.1.0|^0.2.0|^0.3.0|^0.4.0|^0.5.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
