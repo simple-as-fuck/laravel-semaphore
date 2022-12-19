@@ -3,27 +3,13 @@ name: CI
 on: [push]
 
 jobs:
-  php74:
-    name: "php 7.4"
-    runs-on: ubuntu-latest
-    container: "nofutur3/php-tests:7.4"
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: composer install --no-interaction
-
-      - name: Run static analysis
-        run: vendor/bin/phpstan analyse
-
   php80:
     name: "php 8.0"
     runs-on: ubuntu-latest
     container: "nofutur3/php-tests:8.0"
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: composer install --no-interaction
@@ -37,7 +23,7 @@ jobs:
     container: "nofutur3/php-tests:8.1"
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: composer update --no-interaction --with simple-as-fuck/php-validator:^0.2.0
@@ -51,7 +37,7 @@ jobs:
     container: "nofutur3/php-tests:8.1"
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: composer update --no-interaction --with simple-as-fuck/php-validator:^0.3.0
@@ -65,7 +51,7 @@ jobs:
     container: "nofutur3/php-tests:8.1"
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: composer update --no-interaction --with simple-as-fuck/php-validator:^0.1.0 --with illuminate/contracts:^8.0 --with symfony/lock:^5.3
@@ -79,7 +65,7 @@ jobs:
     container: "nofutur3/php-tests:8.1"
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: composer install --no-interaction
