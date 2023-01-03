@@ -6,6 +6,20 @@ on:
       - "*"
 
 jobs:
+  php82:
+    name: "php 8.2"
+    runs-on: ubuntu-latest
+    container: "nofutur3/php-tests:8.2"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: composer install --no-interaction
+
+      - name: Run static analysis
+        run: vendor/bin/phpstan analyse
+
   php80:
     name: "php 8.0"
     runs-on: ubuntu-latest
