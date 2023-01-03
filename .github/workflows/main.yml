@@ -20,6 +20,9 @@ jobs:
       - name: Run static analysis
         run: vendor/bin/phpstan analyse
 
+      - name: Run tests
+        run: vendor/bin/phpunit test/
+
   php80:
     name: "php 8.0"
     runs-on: ubuntu-latest
