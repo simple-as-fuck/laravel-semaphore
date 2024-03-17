@@ -29,6 +29,26 @@ jobs:
       - name: Run tests
         run: tools/phpunit test/ --bootstrap vendor/autoload.php
 
+  php83a:
+    name: "php 8.3, laravel 10.0, validator 0.5"
+    runs-on: ubuntu-latest
+    container: "nofutur3/php-tests:8.3"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install tools
+        run: phive install --trust-gpg-keys E82B2FB314E9906E,4AA394086372C20A
+
+      - name: Install dependencies
+        run: composer update --no-interaction --with simple-as-fuck/php-validator:^0.5.0 --with illuminate/contracts:^10.0
+
+      - name: Run static analysis
+        run: vendor/bin/phpstan analyse
+
+      - name: Run tests
+        run: tools/phpunit test/ --bootstrap vendor/autoload.php
+
   php82:
     name: "php 8.2"
     runs-on: ubuntu-latest
