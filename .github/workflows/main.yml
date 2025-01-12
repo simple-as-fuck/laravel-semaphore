@@ -29,6 +29,23 @@ jobs:
       - name: Run tests
         run: tools/phpunit test/ --bootstrap vendor/autoload.php
 
+  php83b:
+    name: "php 8.3, validator 0.6"
+    runs-on: ubuntu-latest
+    container: "nofutur3/php-tests:8.3"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: composer update --no-interaction --with simple-as-fuck/php-validator:^0.6.0
+
+      - name: Run static analysis
+        run: vendor/bin/phpstan analyse
+
+      - name: Run tests
+        run: tools/phpunit test/ --bootstrap vendor/autoload.php
+
   php83a:
     name: "php 8.3, laravel 10.0, validator 0.5"
     runs-on: ubuntu-latest
