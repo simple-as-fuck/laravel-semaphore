@@ -37,6 +37,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install tools
+        run: phive install --trust-gpg-keys E82B2FB314E9906E,4AA394086372C20A
+
       - name: Install dependencies
         run: composer update --no-interaction --with simple-as-fuck/php-validator:^0.6.0
 
